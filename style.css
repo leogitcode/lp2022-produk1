@@ -1,0 +1,96 @@
+body{
+    line-height: 1.2;
+    font-size: 14px;
+
+}
+.konten {
+    max-width: 600px;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+.row {
+    margin-right: 0;
+    margin-left: 0;
+}
+.judulproduk {
+    font-size: 22px;
+    font-weight: bold;
+}
+.subjudulproduk {
+    font-weight: bold;
+}
+ol {
+    padding: 0 15px 0 15px;
+    margin-bottom: 0;
+}
+.bg-image1 {
+    background-size: cover;
+    background-attachment: scroll;
+    background-origin: content-box;
+    background-image: url(/bg1.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.bg-image2 {
+    background-size: cover;
+    background-attachment: scroll;
+    background-origin: content-box;
+    background-image: url(/bg2.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.bg-image3 {
+    background-size: cover;
+    background-attachment: scroll;
+    background-origin: content-box;
+    background-image: url(/bg3.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+/* .parent>.row{
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.col img{
+    width: 100%;
+    cursor: pointer;
+    transition: transform 1s;
+    object-fit: cover;
+}
+.col label{
+    overflow: hidden;
+    position: relative;
+} */
+.imgbgchk:checked + label>.tick_container{
+    opacity: 1;
+}
+.imgbgchk:checked + label>img{
+    /* transform: scale(1.25); */
+    opacity: 0.6;
+}
+.imgbgchk:checked + label{
+    border: #11aa16 3px solid;
+    border-radius: 14px;
+}
+.tick_container {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    cursor: pointer;
+    text-align: center;
+}
+.tick {
+    background-color: #11aa16;
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 100%;
+}
