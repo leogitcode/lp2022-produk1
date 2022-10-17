@@ -6,16 +6,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <title>Document</title>
 
         <style>
-
+            body {
+                font-family: 'Quicksand', sans-serif;
+                font-size: 20px;
+            }
             .content {
                 max-width: 600px;
                 width: 100%;
                 margin-right: auto;
                 margin-left: auto;
             }
+            @-webkit-keyframes downarrow {
+                0% { -webkit-transform: translateY(0); }
+                100% { -webkit-transform: translateY(0.4em); }
+            }
+
+            .arrow {
+                border-color:transparent;
+                border-style:solid;
+                border-width:0 2em;
+                display:block;
+                height:0;
+                margin:1em auto;
+                text-indent:-9999px;
+                transform-origin: 50% 50%;
+                width:0;
+            }
+
+            .down {
+                -webkit-animation: downarrow 0.6s infinite alternate ease-in-out;
+                border-top:2em solid #ff0000;
+            }
+
+            ol { counter-reset: item; }
+            ol li { display: block; }
+            ol li:before {
+                content: counter(item) ". ";
+                counter-increment: item;
+                color: #fbff07;
+                margin-left: -1em;
+                font-weight: bold;
+            }
+
         </style>
 </head>
 <body>
@@ -28,37 +66,42 @@
     
             <div style="padding: 0 40px 0 40px;margin-top: 30px;">
     
-                <p class="text-center" style="font-weight: bold;">
-                    5 PERKARA YANG MEMBUAT LAKI-LAKI GAK PERCAYA DIRI SAAT BERSETUBUH
+                <p class="text-center" style="font-weight: bold;font-size: 24px;">
+                    <span style="color: #fbff07;font-weight: bold;">5 PERKARA</span> YANG MEMBUAT LAKI-LAKI GAK PERCAYA DIRI SAAT BERSETUBUH
                 </p>
-            
-                <ol>
-                    <li>Foreplay (pemanasan) tidak kuat lama karena takut ngecrot duluan saat kont*l dikocok, dijilat, dan diemut oleh istri</li>
-                    <li>Ejakulasi di bawah 10 menit</li>
-                    <li>Terlalu cepat gonta-ganti posisi karena takut ngecrot kalo kelamaan genjot di posisi yang sama</li>
-                    <li>Mau lanjut ronde 2 sudah tidak ada gairah, tenaga dan stamina</li>
-                    <li>Ereksi (ngaceng) tidak keras maksimal, Waspada ini adalah gejala awal impoten</li>
-                    <li>Istri terlihat tidak puas, tapi dia pura-pura sudah puas demi menjaga perasaan suami</li>
-                </ol>
+                <div style="border: solid 1px rgba(255, 255, 255, 0.247);padding: 1em 1em 1em 0px;border-radius: 10px;">
+                    <ol>
+                        <li style="border-bottom: dotted 1px rgba(255, 255, 255, 0.247);"><span style="color: #fbff07;font-weight: bold;">FOREPPLAY</span> (pemanasan) tidak kuat lama karena takut ngecrot duluan saat kont*l dikocok, dijilat, dan diemut oleh istri</li>
+                        <li style="border-bottom: dotted 1px rgba(255, 255, 255, 0.247);"><span style="color: #fbff07;font-weight: bold;">EJAKULASI</span> di bawah 10 menit, ngecrot duluan ketika istri belum mencapai klimaks</li>
+                        <li style="border-bottom: dotted 1px rgba(255, 255, 255, 0.247);"><span style="color: #fbff07;font-weight: bold;">GONTA-GANTI POSISI</span> terlalu cepat karena takut ngecrot kalo kelamaan genjot di posisi yang sama</li>
+                        <li style="border-bottom: dotted 1px rgba(255, 255, 255, 0.247);"><span style="color: #fbff07;font-weight: bold;">TIDAK ADA GAIRAH</span> ketika mau lanjut RONDE 2, kehabisan tenaga dan stamina</li>
+                        <li style="border-bottom: dotted 1px rgba(255, 255, 255, 0.247);"><span style="color: #fbff07;font-weight: bold;">TIDAK KERAS MAKSIMAL</span> Waspada ini adalah gejala awal impoten</li>
+                    </ol>
+                </div>
+
+                </div>
+
     
             </div>
     
             <div style="padding: 0 40px 0 40px;margin-top: 30px;">
                 <p class="text-center" style="font-weight: bold;">
-                    WASPADA!! BISA CERAI, KARENA ANDA GAGAL DI RANJANG
+                    <span style="color: #ff0000;font-weight: bold;">WASPADA..!!</span> RUMAH TANGGA KURANG MESRA JIKA ANDA PAYAH DI RANJANG
                 </p>
-                <p style="text-align:center;">
-                    FAKTA! - Tingkat perceraian di Indonesia mencapai 76.2% setiap harinya. Salah satu faktor utama perceraian adalah, tidak puasnya istri dengan suami. 82% pria di Indonesia mempunyai masalah  EDI atau Ejakulasi Dini, dan size yang tidak memuaskan.
-                </p>
+                <div style="text-align:center;font-size: 12px;padding: 10px;border: dotted 2px #ffffff;border-radius: 10px;">
+                    <span style="color: #ff0000;font-weight: bold;">FAKTA</span> : Tingkat perceraian di Indonesia mencapai 76.2% setiap harinya. Salah satu faktor utama perceraian adalah, tidak puasnya istri dengan suami. 82% pria di Indonesia mempunyai masalah  EDI atau Ejakulasi Dini, dan size yang tidak memuaskan.
+                </div>
             </div>
     
-            <div style="padding: 0 30px 0 30px;">
+            <div style="padding: 0 30px 0 30px;margin-top: 30px;">
                 <img src="adegan2.gif" style="width: 100%; " loading="lazy">
             </div>
     
     
             <div style="padding: 0 40px 0 40px;margin-top: 30px;">
-                <p class="text-center" style="font-weight: bold;">
+                <span href="#" class="arrow down"></span>
+
+                <p class="text-center" style="font-weight: bold;font-size: 30px;color: #fbff07">
                     MEMPERKENALKAN
                 </p>
             </div>
@@ -70,8 +113,8 @@
     
             
             <div style="padding: 0 40px 0 40px;margin-top: 30px;">
-                <p class="text-center" style="font-weight: bold;">
-                    KHASIAT DAN MAFAAT HERBAL ARRIJAL
+                <p class="text-center" style="font-weight: bold;font-size: 24px;">
+                   <span style="color: #fbff07">7 KHASIAT DAN MAFAAT</span> HERBAL ARRIJAL
                 </p>
                 <ol>
                     <li>Mengatasi ejakulasi dini (Tahan lama 45 menit no problem)</li>
@@ -80,12 +123,12 @@
                     <li>Meningkatkan kualitas dan kuantitas sperma</li>
                     <li>Meningkatkan gairah dan stamina pria</li>
                     <li>Menigkatkan kualitas ereksi</li>
-                    <li>Mengatasi impoten</li>
+                    <li>Mengatasi gejala impotensi</li>
                 </ol>
             </div>
             <div style="padding: 0 40px 0 40px;margin-top: 30px;">
-                <p class="text-center" style="font-weight: bold;">
-                    BAHAN-BAHAN PREMIUM YANG TERKANDUNG DALAM ARRIJAL HERBAL
+                <p class="text-center" style="font-weight: bold;font-size: 24px;">
+                    <span style="color: #fbff07">BAHAN-BAHAN PREMIUM</span> YANG TERKANDUNG DALAM ARRIJAL HERBAL
                 </p>
             </div>
             <div style="padding: 0 30px 0 30px;margin-top: 30px">
@@ -94,14 +137,14 @@
     
             <div style="padding: 0 40px 0 40px;margin-top: 30px;">
                 <p class="text-center" style="font-weight: bold;">
-                    5 EFEK YANG AKAN LANGSUNG ANDA RASAKAN KETIKA ANDA MEMINUM HERBAL ARRIJAL 45 MENIT SEBELUM PERTEMPURAN
+                    <span style="color: #fbff07">5 EFEK DAHSYAT</span> YANG AKAN LANGSUNG TERASA SETELAH MEMINUM HERBAL ARRIJAL
                 </p>
                 <ol>
-                    <li>Ereksi akan terasa 7 x lebih keras dari sebelumnya</li>
-                    <li>Genjotan akan 8 x lebih kencang dan brutal</li>
-                    <li>Durasi sex 9 x lebih lama dan tidak cepat keluar</li>
-                    <li>Stamina dan tenaga akan bertambah 7 x lebih kuat</li>
-                    <li>Istri anda akan puas dan nagih terus sampai 3 ronde </li>
+                    <li>Ereksi akan terasa <span style="color: #ff0000">7 x</span> lebih keras dari sebelumnya</li>
+                    <li>Genjotan akan <span style="color: #ff0000">8 x</span> lebih kencang dan brutal</li>
+                    <li>Durasi sex <span style="color: #ff0000">9 x</span> lebih lama dan tidak cepat keluar</li>
+                    <li>Stamina dan tenaga akan bertambah <span style="color: #ff0000">7 x</span> lebih kuat</li>
+                    <li>Istri anda akan puas dan nagih terus sampai <span style="color: #ff0000">3 x</span> ronde </li>
                 </ol>
             </div>
             <div style="padding: 0 40px 0 40px;margin-top: 30px;">
@@ -116,7 +159,7 @@
     
             <div style="padding: 0 40px 0 40px;margin-top: 30px;">
                 <p class="text-center" style="font-weight: bold;">
-                    INTINYA ANDA TIDAK AKAN KHAWATIR NGECROT DULUAN KETIKA :
+                    TAK PERLU KHAWATIR NGECROT DULUAN KETIKA :
                 </p>
                 <ol>
                     <li>Istri anda memainkan dan menocok kont*l anda dengan cepat</li>
@@ -153,19 +196,24 @@
 
         <div class="content">
 
-        
+            <div class="py-2 px-5">
+                <img src="solo.gif" style="width: 100%;border-radius: 10px 10px 0 0;" loading="lazy">
+                <div class="p-3 text-center" style="background-color: #000;border-radius: 0 0 10px 10px">
+                    <button class="btn" style="background-color: #008629;color:white;border-color:#008629;font-weight:bold;padding:4px 8px;font-size: 20px;">
+                        <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> PESAN SEKARANG
+                    </button>
+                </div>     
+            </div>
 
-        <div style="padding: 0 40px 0 40px;margin-top: 30px;">
-            <p class="text-center" style="font-weight: bold;">
-                PILIH PAKET            
-            </p>
-        </div>
+            <div class="pt-3 pb-2 px-5 text-center">
+                <img src="belipaket.gif" style="width: 100%;max-width: 300px;">
+                    <span href="#" class="arrow down"></span>
+            </div>
 
-        
         <div class="py-2 px-5">
             <img src="paket1.gif" style="width: 100%;border-radius: 10px 10px 0 0;" loading="lazy">
             <div class="p-3 text-center" style="background-color: #000;border-radius: 0 0 10px 10px">
-                <button class="btn btn-warning" style="background-color: #2016f1;color:white;border-color:#2016f1;font-weight:bold;padding:4px 8px;font-size: 14px;">
+                <button class="btn" style="background-color: #1565c0;color:white;border-color:#1565c0;font-weight:bold;padding:4px 8px;font-size: 20px;">
                     <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> PESAN SEKARANG
                 </button>
             </div>     
@@ -174,16 +222,16 @@
         <div class="py-2 px-5">
             <img src="paket2.gif" style="width: 100%;border-radius: 10px 10px 0 0;" loading="lazy">
             <div class="p-3 text-center" style="background-color: #000;border-radius: 0 0 10px 10px">
-                <button class="btn btn-warning" style="background-color: #f14a16;color:white;border-color:#f14a16;font-weight:bold;padding:4px 8px;font-size: 14px;">
+                <button class="btn" style="background-color: #e65100;color:white;border-color:#e65100;font-weight:bold;padding:4px 8px;font-size: 20px;">
                     <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> PESAN SEKARANG
                 </button>
             </div>     
         </div>
 
         <div class="py-2 px-5">
-            <img src="paket2.gif" style="width: 100%;border-radius: 10px 10px 0 0;" loading="lazy">
+            <img src="paket3.gif" style="width: 100%;border-radius: 10px 10px 0 0;" loading="lazy">
             <div class="p-3 text-center" style="background-color: #000;border-radius: 0 0 10px 10px">
-                <button class="btn btn-warning" style="background-color: #f14a16;color:white;border-color:#f14a16;font-weight:bold;padding:4px 8px;font-size: 14px;">
+                <button class="btn" style="background-color: #d00000;color:white;border-color:#d00000;font-weight:bold;padding:4px 8px;font-size: 20px;">
                     <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> PESAN SEKARANG
                 </button>
             </div>     
