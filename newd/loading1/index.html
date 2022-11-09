@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processing...</title>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script>
+        var url_string = window.location.href;
+        var url = new URL(url_string);
+        var nama = url.searchParams.get("nama");
+        var nomor = url.searchParams.get("nomor");
+        var alamat = url.searchParams.get("alamat");
+        var provinsi = url.searchParams.get("provinsi");
+        var kotkab = url.searchParams.get("kotkab");
+        var kecamatan = url.searchParams.get("kecamatan");
+        var tanggalSampai = url.searchParams.get("tanggalSampai");
+        var id = url.searchParams.get("id");
+        if (id === "1") {
+            var paket = "Herbal Ar-Rijal 1 btl";
+            var hrg = "Rp 85.000";
+            var statusongkir = "Rp 25.000";
+        } else if (id === "3") {
+            var paket = "*PAKET THREESOME* (Herbal Ar-Rijal 3 btl %2b Bonus Hajar Jahanam 1 btl)";
+            var hrg = "Rp 198.000";
+            var statusongkir = "Gratis ongkir";
+        } else if (id === "6") {
+            var paket = "*PAKET GANGBANG* (Herbal Ar-Rijal 6 btl %2b Bonus Hajar Jahanam 2 btl)";
+            var hrg = "Rp 348.000";
+            var statusongkir = "Gratis ongkir";
+        } else if (id === "9") {
+            var paket = "*PAKET PARTY* (Herbal Ar-Rijal 9 btl %2b Bonus Hajar Jahanam 3 btl)";
+            var hrg = "Rp 495.000";
+            var statusongkir = "Gratis ongkir";
+        } else {
+            window.location.href = "/"
+        }
+        if(nomor.startsWith("0")){
+            var numb = nomor.substring(1, nomor.length);
+            nomor62 = "62"+numb;
+        } else {
+            nomor62 = nomor;
+        }
+    </script>
+</head>
+<body>
+    <script>
+        Email.send({
+            SecureToken : "87f8ddf8-a57c-4aa0-8644-27b697728386",
+            To : "orderbaru690@gmail.com",
+            From : "udinito071@gmail.com",
+            // SecureToken : "1bd30313-17a9-4ba6-bd8f-8787ba36d821",
+            // To : "orderbaru690@gmail.com",
+            // From : "xyurozix@gmail.com",
+            Subject : id+"-"+nama+"-"+nomor+"-"+provinsi+"-"+kotkab+"-"+kecamatan,
+            Body : id+`;`+nama+`;`+nomor+`;`+alamat+`;`+provinsi+`;`+kotkab+`;`+kecamatan+`;`+paket+`;`+hrg+`<br><br><a href="https://wa.me/`+nomor62+`?text=*Halo%2C%20`+nama+`*%0A%0AIni%20adalah%20detail%20pesananan%20anda%0A%0ANama%20%3A%20`+nama+`%0ANomor%20WA%20%3A%20`+nomor+`%0AAlamat%20%3A%20`+alamat+`%2C%20KEC.%20`+kecamatan+`%2C%20`+kotkab+`%2C%20`+provinsi+`%0ABarang%20%3A%20`+paket+`%0AHarga%20%3A%20*`+hrg+`*%0AOngkir%20%3A%20`+statusongkir+`%0A%0A%E2%9C%85%20Pesanan%20sedang%20dalam%20proses%0A%E2%9C%85%20Perkiraan%20paket%20sampai%20sebelum%20tanggal%20*`+tanggalSampai+`*%0A%E2%9C%85%20Bayar%20uang%20tunai%20sejumlah%20*`+hrg+`*%20kepada%20kurir%20saat%20pesanan%20sampai%0A%0A*Terimakasih*"><button style="background-color: #047e00;color: #ffffff;border: solid 1px #047e00;border-radius: 10px;padding: 10px;font-size: 22px;text-decoration: none;"><b>Follow up</b></button></a>`
+        }).then(
+            message => window.location.href = window.location.href.replace("/loading1/","/loading2/")
+        );
+    </script>
+</body>
+</html>
