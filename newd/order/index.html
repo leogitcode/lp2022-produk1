@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js"></script>
     <title>Detail Order</title>
     <style>
         .table td {
@@ -19,7 +20,7 @@
             border: 2px solid #ffffff;
         }
         td.tdr {
-            background-color: #b7fcba;
+            background-color: #dcedff;
             border: 2px solid #ffffff;
         }
         #p_tanggalSampai {
@@ -37,56 +38,99 @@
             font-weight: bold;
             color: #ff0000; 
         }
+        canvas {
+            width: 100%;
+        }
     </style>
 
 </head>
 <body>
-    <div class="container-sm mt-5 p-3" style="max-width: 550px;">
-        <p>
-            <b>Halo, <span id="p_nama"></span></b>
-        </p>
-        <p>
-            Ini adalah detail pesananan anda
-        </p>
-        <table class="table">
+    
+    <div class="container-sm p-3" style="max-width: 550px;">
+        
+        <div id="capture" style="background-color: #ffffff">
+            <div class="p-1">
+                <p style="text-align: center;font-size: 22px;font-weight: bold;color: #007bff;">
+                    Bukti Pemesanan
+                </p>
+                <p>
+                    <b>Halo  <span id="p_nama"></span></b>
+                </p>
+                <p>
+                    Berikut ini adalah detail pesanan anda
+                </p>
+                <table class="table">
+        
+                    <tr>
+                        <td class="tdl">Nama</td>
+                        <td class="tdr" id="p_nama2"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdl">Nomor WA</td>
+                        <td class="tdr" id="p_nomor"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdl">Alamat</td>
+                        <td class="tdr" id="p_alamat"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdl">Paket</td>
+                        <td class="tdr" id="p_paket"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdl">Harga</td>
+                        <td class="tdr" id="p_harga_tab"></td>
+                    </tr>
+                    <tr>
+                        <td class="tdl">Ongkir</td>
+                        <td class="tdr" id="p_ongkir">Gratis</td>
+                    </tr>
+                </table>
+                <ul class="fa-ul">
+                    <li><i style="color: #009846; margin-right: 5px;" class="fa-li fa fa-check"></i>Pesanan anda <span style="font-weight: bold;color: #ff0000;">sedang dalam proses</span></li>
+                    <li><i style="color: #009846; margin-right: 5px;" class="fa-li fa fa-check"></i>Perkiraan paket sampai sebelum tanggal <span id="p_tanggalSampai"></span></li>
+                    <li><i style="color: #009846; margin-right: 5px;" class="fa-li fa fa-check"></i>Bayar ke kurir sejumlah <span id="p_harga"></span><span id="ket_harga"></span> saat paket sampai</li>
+                </ul>
+                <p>
+                    <b>Terimakasih</b>
+                </p>
+            </div>
+        </div>
 
-            <tr>
-                <td class="tdl">Nama</td>
-                <td class="tdr" id="p_nama2"></td>
-            </tr>
-            <tr>
-                <td class="tdl">Nomor WA</td>
-                <td class="tdr" id="p_nomor"></td>
-            </tr>
-            <tr>
-                <td class="tdl">Alamat</td>
-                <td class="tdr" id="p_alamat"></td>
-            </tr>
-            <tr>
-                <td class="tdl">Barang</td>
-                <td class="tdr" id="p_paket"></td>
-            </tr>
-            <tr>
-                <td class="tdl">Harga</td>
-                <td class="tdr" id="p_harga_tab"></td>
-            </tr>
-            <tr>
-                <td class="tdl">Ongkir</td>
-                <td class="tdr" id="p_ongkir">Gratis</td>
-            </tr>
-        </table>
-        <ul class="fa-ul">
-            <li><i style="color: #009846; margin-right: 5px;" class="fa-li fa fa-check"></i>Pesanan sedang  dalam proses</li>
-            <li><i style="color: #009846; margin-right: 5px;" class="fa-li fa fa-check"></i>Perkiraan paket sampai sebelum tanggal <span id="p_tanggalSampai"></span></li>
-            <li><i style="color: #009846; margin-right: 5px;" class="fa-li fa fa-check"></i>Bayar uang tunai sejumlah <span id="p_harga">Rp 98.000 </span><span id="ket_harga"></span> kepada kurir saat pesanan sampai.</li>
-        </ul>
-        <p>
-            <b>Terimakasih</b>
-        </p>
         <hr class="mt-5">
-        <div class="mt-5 p-2 text-center" style="border: 1px dashed #ff9191;border-radius: 5px;background-color: #ffeaea;">
-            <span style="font-style: italic;font-size:12px;color: #ff0000;">
-                Anda akan mendapatkan salinan detail pesanan ini ke whatsapp dalam 30 menit ke depan, pastikan nomor whatsapp anda aktif.
+        <div class="text-center">
+            <a href="#" class="btn btn-primary p-3" id="btnDownload"><i class="fas fa-download"></i> Simpan Bukti Pemesanan</a>
+        </div>
+
+
+
+        <br/>
+
+        <script>
+            function download(url){
+                var a = $("<a style='display:none' id='js-downloder'>")
+                    .attr("href", url)
+                    .attr("download", "bukti_pemesanan.png")
+                    .appendTo("body");
+                a[0].click();
+                a.remove();
+            }
+            function saveCapture(element) {
+                html2canvas(element).then(function(canvas) {
+                    download(canvas.toDataURL("image/png"));
+                })
+            }
+            $('#btnDownload').click(function(){
+                var element = document.querySelector("#capture");
+                saveCapture(element)
+            })
+        </script>
+
+
+
+        <div class="mt-5 p-2 text-center" style="border: 1px dashed #28a745;border-radius: 5px;background-color: #f4fdff;">
+            <span style="font-style: italic;font-size:12px;color: #28a745;">
+                Anda akan mendapatkan salinan bukti pemesanana ini ke whatsapp dalam 30 menit ke depan, pastikan nomor whatsapp anda aktif.
             </span>
         </div>
         <script>
@@ -127,6 +171,7 @@
 
             document.getElementById("p_tanggalSampai").innerHTML = tanggalSampai;
         </script>
-    </div>
+
+</div>
 </body>
 </html>
