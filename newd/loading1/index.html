@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Processing...</title>
-    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <!-- <script src="https://smtpjs.com/v3/smtp.js"></script> -->
     <script>
         var url_string = window.location.href;
         var url = new URL(url_string);
@@ -20,18 +21,22 @@
         if (id === "1") {
             var paket = "Herbal Ar-Rijal 1 btl";
             var hrg = "Rp 85.000";
+            var hrg2 = "Rp 100.000";
             var statusongkir = "Rp 25.000";
         } else if (id === "3") {
-            var paket = "PAKET THREESOME (Herbal Ar-Rijal 3 btl %2b Bonus Hajar Jahanam 1 btl)";
+            var paket = "PAKET THREESOME (Herbal Ar-Rijal 3 btl + Bonus Hajar Jahanam 1 btl)";
             var hrg = "Rp 198.000";
+            var hrg2 = "Rp 198.000";
             var statusongkir = "Gratis ongkir";
         } else if (id === "6") {
-            var paket = "PAKET GANGBANG (Herbal Ar-Rijal 6 btl %2b Bonus Hajar Jahanam 2 btl)";
+            var paket = "PAKET GANGBANG (Herbal Ar-Rijal 6 btl + Bonus Hajar Jahanam 2 btl)";
             var hrg = "Rp 348.000";
+            var hrg2 = "Rp 348.000";
             var statusongkir = "Gratis ongkir";
         } else if (id === "9") {
-            var paket = "PAKET PARTY (Herbal Ar-Rijal 9 btl %2b Bonus Hajar Jahanam 3 btl)";
+            var paket = "PAKET PARTY (Herbal Ar-Rijal 9 btl + Bonus Hajar Jahanam 3 btl)";
             var hrg = "Rp 495.000";
+            var hrg2 = "Rp 495.000";
             var statusongkir = "Gratis ongkir";
         } else {
             window.location.href = "/"
@@ -46,6 +51,27 @@
 </head>
 <body>
     <script>
+        var form = new FormData();
+        form.append("target", nomor);
+        form.append("message", `_*Halo `+nama+`*_\n──── ⋅⋅ ──── ⋅⋅ ──── ⋅⋅ ────\n👉 _*Berikut ini adalah detail pesanan anda*_\n👤 _*Nama* : `+nama+`_\n📱 _*Nomor WA* : `+nomor+`_\n🏠 _*Alamat* : `+alamat+`, KEC. `+kecamatan+`, `+kotkab+`, `+provinsi+`_\n📦 _*Paket* : `+paket+`_\n💸 _*Harga* : `+hrg+`_\n🚚 _*Ongkir* : `+statusongkir+`_\n──── ⋅⋅ ──── ⋅⋅ ──── ⋅⋅ ────\n⭐ _Pesanan anda *sedang dalam proses*_\n⭐ _Perkiraan paket sampai sebelum tanggal *`+tanggalSampai+`*_\n⭐ _Bayar ke kurir sejumlah *`+hrg2+`* saat paket sampai_\n──── ⋅⋅ ──── ⋅⋅ ──── ⋅⋅ ────\n_*Terimakasih*_`);
+        var settings = {
+            "url": "https://api.fonnte.com/send",
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+                "Authorization": "nyFTfFMMDetE8iWYnw9D"
+            },
+            "processData": false,
+            "mimeType": "multipart/form-data",
+            "contentType": false,
+            "data": form
+        };
+        $.ajax(settings).done(function (response) {
+            // document.write(response);
+            window.location.href = window.location.href.replace("/loading1/","/loading2/")
+        });
+    </script>
+    <!-- <script>
         Email.send({
             // SecureToken : "87f8ddf8-a57c-4aa0-8644-27b697728386",
             // To : "orderbaru690@gmail.com",
@@ -58,14 +84,14 @@
         }).then(
             message => window.location.href = window.location.href.replace("/loading1/","/loading2/")
         );
-    </script>
+    </script> -->
 </body>
 <!-- _*Halo `+nama+`*_
 ──── ⋅⋅ ──── ⋅⋅ ──── ⋅⋅ ────
 👉 _*Berikut ini adalah detail pesanan anda*_
 👤 _*Nama* : `+nama+`_
 📱 _*Nomor WA* : `+nomor+`_
-🏠 _*Alamat* : `+alamat+`, KEC. `+alamat+`, `+kotkab+`, `+provinsi+`_
+🏠 _*Alamat* : `+alamat+`, KEC. `+kecamatan+`, `+kotkab+`, `+provinsi+`_
 📦 _*Paket* : `+paket+`_
 💸 _*Harga* : `+hrg+`_
 🚚 _*Ongkir* : `+statusongkir+`_

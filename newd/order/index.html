@@ -50,16 +50,16 @@
         
         <div id="capture" style="background-color: #ffffff">
             <div class="p-1">
-                <p style="text-align: center;font-size: 22px;font-weight: bold;color: #007bff;">
+                <p style="text-align: center;font-size: 18px;font-weight: bold;color: #007bff;">
                     Bukti Pemesanan
                 </p>
-                <p>
+                <p style="font-size:14px">
                     <b>Halo  <span id="p_nama"></span></b>
                 </p>
-                <p>
+                <p style="font-size:14px">
                     Berikut ini adalah detail pesanan anda
                 </p>
-                <table class="table">
+                <table class="table" style="font-size:12px">
         
                     <tr>
                         <td class="tdl">Nama</td>
@@ -86,18 +86,17 @@
                         <td class="tdr" id="p_ongkir">Gratis</td>
                     </tr>
                 </table>
-                <ul class="fa-ul">
+                <ul class="fa-ul" style="font-size:14px">
                     <li><i style="color: #009846; margin-right: 5px;" class="fa-li fa fa-check"></i>Pesanan anda <span style="font-weight: bold;color: #ff0000;">sedang dalam proses</span></li>
                     <li><i style="color: #009846; margin-right: 5px;" class="fa-li fa fa-check"></i>Perkiraan paket sampai sebelum tanggal <span id="p_tanggalSampai"></span></li>
                     <li><i style="color: #009846; margin-right: 5px;" class="fa-li fa fa-check"></i>Bayar ke kurir sejumlah <span id="p_harga"></span><span id="ket_harga"></span> saat paket sampai</li>
                 </ul>
-                <p>
+                <p style="font-size:14px">
                     <b>Terimakasih</b>
                 </p>
             </div>
         </div>
 
-        <hr class="mt-5">
         <div class="text-center">
             <a href="#" class="btn btn-primary p-3" id="btnDownload"><i class="fas fa-download"></i> Simpan Bukti Pemesanan</a>
         </div>
@@ -127,12 +126,6 @@
         </script>
 
 
-
-        <div class="mt-5 p-2 text-center" style="border: 1px dashed #28a745;border-radius: 5px;background-color: #f4fdff;">
-            <span style="font-style: italic;font-size:12px;color: #28a745;">
-                Anda akan mendapatkan salinan bukti pemesanana ini ke whatsapp dalam 30 menit ke depan, pastikan nomor whatsapp anda aktif.
-            </span>
-        </div>
         <script>
             var url_string = window.location.href;
             var url = new URL(url_string);
