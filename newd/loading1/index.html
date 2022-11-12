@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Processing...</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <!-- <script src="https://smtpjs.com/v3/smtp.js"></script> -->
     <script>
@@ -50,10 +52,11 @@
     </script>
 </head>
 <body>
+    
     <script>
         var form = new FormData();
-        form.append("target", nomor);
-        form.append("message", `_*Halo `+nama+`*_\n──── ⋅⋅ ──── ⋅⋅ ──── ⋅⋅ ────\n👉 _*Berikut ini adalah detail pesanan anda*_\n👤 _*Nama* : `+nama+`_\n📱 _*Nomor WA* : `+nomor+`_\n🏠 _*Alamat* : `+alamat+`, KEC. `+kecamatan+`, `+kotkab+`, `+provinsi+`_\n📦 _*Paket* : `+paket+`_\n💸 _*Harga* : `+hrg+`_\n🚚 _*Ongkir* : `+statusongkir+`_\n──── ⋅⋅ ──── ⋅⋅ ──── ⋅⋅ ────\n⭐ _Pesanan anda *sedang dalam proses*_\n⭐ _Perkiraan paket sampai sebelum tanggal *`+tanggalSampai+`*_\n⭐ _Bayar ke kurir sejumlah *`+hrg2+`* saat paket sampai_\n──── ⋅⋅ ──── ⋅⋅ ──── ⋅⋅ ────\n_*Terimakasih*_`);
+        form.append("target", "085155065560");
+        form.append("message", "New Order\n"+id+"-"+nama+"-"+nomor+"-"+alamat+"-KEC. "+kecamatan+"-"+kotkab+"-"+provinsi+"-"+paket+"-"+hrg);
         var settings = {
             "url": "https://api.fonnte.com/send",
             "method": "POST",
@@ -67,38 +70,8 @@
             "data": form
         };
         $.ajax(settings).done(function (response) {
-            // document.write(response);
             window.location.href = window.location.href.replace("/loading1/","/loading2/")
         });
-    </script>
-    <!-- <script>
-        Email.send({
-            // SecureToken : "87f8ddf8-a57c-4aa0-8644-27b697728386",
-            // To : "orderbaru690@gmail.com",
-            // From : "udinito071@gmail.com",
-            SecureToken : "1bd30313-17a9-4ba6-bd8f-8787ba36d821",
-            To : "orderbaru690@gmail.com",
-            From : "xyurozix@gmail.com",
-            Subject : id+"-"+nama+"-"+nomor+"-"+provinsi+"-"+kotkab+"-"+kecamatan,
-            Body : id+`;`+nama+`;`+nomor+`;`+alamat+`;`+provinsi+`;`+kotkab+`;`+kecamatan+`;`+paket+`;`+hrg+`<br><br><a href="https://wa.me/`+nomor62+`?text=_*Halo%20`+nama+`*_%0A%E2%94%80%E2%94%80%E2%94%80%E2%94%80%20%E2%8B%85%E2%8B%85%20%E2%94%80%E2%94%80%E2%94%80%E2%94%80%20%E2%8B%85%E2%8B%85%20%E2%94%80%E2%94%80%E2%94%80%E2%94%80%20%E2%8B%85%E2%8B%85%20%E2%94%80%E2%94%80%E2%94%80%E2%94%80%0A%F0%9F%91%89%20_*Berikut%20ini%20adalah%20detail%20pesanan%20anda*_%0A%F0%9F%91%A4%20_*Nama*%20%3A%20`+nama+`_%0A%F0%9F%93%B1%20_*Nomor%20WA*%20%3A%20`+nomor+`_%0A%F0%9F%8F%A0%20_*Alamat*%20%3A%20`+alamat+`%2C%20KEC.%20`+kecamatan+`%2C%20`+kotkab+`%2C%20`+provinsi+`_%0A%F0%9F%93%A6%20_*Paket*%20%3A%20`+paket+`_%0A%F0%9F%92%B8%20_*Harga*%20%3A%20`+hrg+`_%0A%F0%9F%9A%9A%20_*Ongkir*%20%3A%20`+statusongkir+`_%0A%E2%94%80%E2%94%80%E2%94%80%E2%94%80%20%E2%8B%85%E2%8B%85%20%E2%94%80%E2%94%80%E2%94%80%E2%94%80%20%E2%8B%85%E2%8B%85%20%E2%94%80%E2%94%80%E2%94%80%E2%94%80%20%E2%8B%85%E2%8B%85%20%E2%94%80%E2%94%80%E2%94%80%E2%94%80%0A%E2%AD%90%20_Pesanan%20anda%20*sedang%20dalam%20proses*_%0A%E2%AD%90%20_Perkiraan%20paket%20sampai%20sebelum%20tanggal%20*`+tanggalSampai+`*_%0A%E2%AD%90%20_Bayar%20ke%20kurir%20sejumlah%20*`+hrg+`*%20saat%20paket%20sampai_%0A%E2%94%80%E2%94%80%E2%94%80%E2%94%80%20%E2%8B%85%E2%8B%85%20%E2%94%80%E2%94%80%E2%94%80%E2%94%80%20%E2%8B%85%E2%8B%85%20%E2%94%80%E2%94%80%E2%94%80%E2%94%80%20%E2%8B%85%E2%8B%85%20%E2%94%80%E2%94%80%E2%94%80%E2%94%80%0A_*Terimakasih*_"><button style="background-color: #047e00;color: #ffffff;border: solid 1px #047e00;border-radius: 10px;padding: 10px;font-size: 22px;text-decoration: none;"><b>Follow up</b></button></a>`
-        }).then(
-            message => window.location.href = window.location.href.replace("/loading1/","/loading2/")
-        );
-    </script> -->
+    </script> 
 </body>
-<!-- _*Halo `+nama+`*_
-──── ⋅⋅ ──── ⋅⋅ ──── ⋅⋅ ────
-👉 _*Berikut ini adalah detail pesanan anda*_
-👤 _*Nama* : `+nama+`_
-📱 _*Nomor WA* : `+nomor+`_
-🏠 _*Alamat* : `+alamat+`, KEC. `+kecamatan+`, `+kotkab+`, `+provinsi+`_
-📦 _*Paket* : `+paket+`_
-💸 _*Harga* : `+hrg+`_
-🚚 _*Ongkir* : `+statusongkir+`_
-──── ⋅⋅ ──── ⋅⋅ ──── ⋅⋅ ────
-⭐ _Pesanan anda *sedang dalam proses*_
-⭐ _Perkiraan paket sampai sebelum tanggal *`+tanggalSampai+`*_
-⭐ _Bayar ke kurir sejumlah *`+hrg+`* saat paket sampai_
-──── ⋅⋅ ──── ⋅⋅ ──── ⋅⋅ ────
-_*Terimakasih*_ -->
 </html>
