@@ -34,10 +34,6 @@
             font-weight: bold;
             color: #ff0000;
         }
-        #ket_harga {
-            font-weight: bold;
-            color: #ff0000; 
-        }
         canvas {
             width: 100%;
         }
@@ -83,13 +79,17 @@
                     </tr>
                     <tr>
                         <td class="tdl">Ongkir</td>
-                        <td class="tdr" id="p_ongkir">Gratis</td>
+                        <td class="tdr" id="p_ongkir"><b>Gratis</b></td>
+                    </tr>
+                    <tr>
+                        <td class="tdl">Total</td>
+                        <td class="tdr" id="p_total"></td>
                     </tr>
                 </table>
                 <ul class="fa-ul" style="font-size:14px">
                     <li><i style="color: #009846; margin-right: 5px;" class="fa-li fa fa-check"></i>Pesanan anda <span style="font-weight: bold;color: #ff0000;">sedang dalam proses</span></li>
                     <li><i style="color: #009846; margin-right: 5px;" class="fa-li fa fa-check"></i>Perkiraan paket sampai sebelum tanggal <span id="p_tanggalSampai"></span></li>
-                    <li><i style="color: #009846; margin-right: 5px;" class="fa-li fa fa-check"></i>Bayar ke kurir sejumlah <span id="p_harga"></span><span id="ket_harga"></span> saat paket sampai</li>
+                    <li><i style="color: #009846; margin-right: 5px;" class="fa-li fa fa-check"></i>Bayar ke kurir sejumlah <span id="p_harga"></span> saat paket sampai</li>
                 </ul>
                 <p style="font-size:14px">
                     <b>Terimakasih</b>
@@ -127,6 +127,11 @@
 
 
         <script>
+        const formatter = new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR',
+            maximumFractionDigits: 0,
+        });
             var url_string = window.location.href;
             var url = new URL(url_string);
             var nama = url.searchParams.get("nama");
@@ -137,20 +142,20 @@
             var kecamatan = url.searchParams.get("kecamatan");
             var tanggalSampai = url.searchParams.get("tanggalSampai");
             var id = url.searchParams.get("id");
+            var hongkir = parseInt(url.searchParams.get("hongkir"));
             if (id === "1") {
                 var paket = "Herbal Ar-Rijal 1 btl";
-                var hrg = "Rp 85.000";
-                document.getElementById("p_ongkir").innerHTML = "Belum termasuk ongkir";
-                document.getElementById("ket_harga").innerHTML = " (Belum termasuk ongkir) ";
+                var hrg = 85000;
+                document.getElementById("p_ongkir").innerHTML = "<b>"+formatter.format(hongkir)+"</b>";
             } else if (id === "3") {
                 var paket = "<b>PAKET THREESOME</b><br/>Herbal Ar-Rijal 3 btl<br/>+ Bonus Hajar Jahanam 1 btl";
-                var hrg = "Rp 198.000";
+                var hrg = 198000;
             } else if (id === "6") {
                 var paket = "<b>PAKET GANGBANG</b><br/>Herbal Ar-Rijal 6 btl<br/>+ Bonus Hajar Jahanam 2 btl";
-                var hrg = "Rp 348.000";
+                var hrg = 348000;
             } else if (id === "9") {
                 var paket = "<b>PAKET PARTY</b><br/>Herbal Ar-Rijal 9 btl<br/>+ Bonus Hajar Jahanam 3 btl";
-                var hrg = "Rp 495.000";
+                var hrg = 495000;
             } else {
                 window.location.href = "/"
             }
@@ -159,9 +164,9 @@
             document.getElementById("p_nomor").innerHTML = nomor;
             document.getElementById("p_alamat").innerHTML = alamat+`, KEC. `+kecamatan+`, `+kotkab+`, `+provinsi;
             document.getElementById("p_paket").innerHTML = paket;
-            document.getElementById("p_harga_tab").innerHTML = hrg;
-            document.getElementById("p_harga").innerHTML = hrg;
-
+            document.getElementById("p_harga_tab").innerHTML = formatter.format(hrg);
+            document.getElementById("p_total").innerHTML = "<b>"+formatter.format(hrg+hongkir)+"</b>";
+            document.getElementById("p_harga").innerHTML = formatter.format(hrg+hongkir);
             document.getElementById("p_tanggalSampai").innerHTML = tanggalSampai;
         </script>
 

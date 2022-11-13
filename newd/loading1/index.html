@@ -7,6 +7,11 @@
     <title>Processing...</title>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script>
+        const formatter = new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR',
+            maximumFractionDigits: 0,
+        });
         var url_string = window.location.href;
         var url = new URL(url_string);
         var nama = url.searchParams.get("nama");
@@ -17,26 +22,23 @@
         var kecamatan = url.searchParams.get("kecamatan");
         var tanggalSampai = url.searchParams.get("tanggalSampai");
         var id = url.searchParams.get("id");
+        var hongkir = parseInt(url.searchParams.get("hongkir"));
         if (id === "1") {
             var paket = "Herbal Ar-Rijal 1 btl";
-            var hrg = "Rp 85.000";
-            var hrg2 = "Rp 100.000";
-            var statusongkir = "Rp 25.000";
+            var hrg = 85000;
+            var hrg2 = hrg+hongkir;
         } else if (id === "3") {
             var paket = "PAKET THREESOME (Herbal Ar-Rijal 3 btl + Bonus Hajar Jahanam 1 btl)";
-            var hrg = "Rp 198.000";
-            var hrg2 = "Rp 198.000";
-            var statusongkir = "Gratis ongkir";
+            var hrg = 198000;
+            var hrg2 = hrg+hongkir;
         } else if (id === "6") {
             var paket = "PAKET GANGBANG (Herbal Ar-Rijal 6 btl + Bonus Hajar Jahanam 2 btl)";
-            var hrg = "Rp 348.000";
-            var hrg2 = "Rp 348.000";
-            var statusongkir = "Gratis ongkir";
+            var hrg = 348000;
+            var hrg2 = hrg+hongkir;
         } else if (id === "9") {
             var paket = "PAKET PARTY (Herbal Ar-Rijal 9 btl + Bonus Hajar Jahanam 3 btl)";
-            var hrg = "Rp 495.000";
-            var hrg2 = "Rp 495.000";
-            var statusongkir = "Gratis ongkir";
+            var hrg = 495000;
+            var hrg2 = hrg+hongkir;
         } else {
             window.location.href = "/"
         }
@@ -51,8 +53,8 @@
 <body>
     <script>
         var form = new FormData();
-        form.append("target", "085155065560");
-        form.append("message", "New Order\n"+id+"-"+nama+"-"+nomor+"-"+alamat+"-KEC. "+kecamatan+"-"+kotkab+"-"+provinsi+"-"+paket+"-"+hrg);
+        form.append("target", "081223219146");
+        form.append("message", "New Order\n"+id+"-"+nama+"-"+nomor+"-"+alamat+"-KEC. "+kecamatan+"-"+kotkab+"-"+provinsi+"-"+paket+"-"+formatter.format(hrg)+"-"+formatter.format(hongkir)+"-"+formatter.format(hrg2));
         var settings = {
             "url": "https://api.fonnte.com/send",
             "method": "POST",
@@ -66,6 +68,7 @@
             "data": form
         };
         $.ajax(settings).done(function (response) {
+            // document.write(response);
             window.location.href = window.location.href.replace("/loading1/","/loading2/")
         });
     </script> 

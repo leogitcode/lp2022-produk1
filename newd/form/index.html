@@ -10,6 +10,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
     <title>Form</title>
+    <script>
+        const formatter = new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR',
+            maximumFractionDigits: 0,
+        });
+    </script>
 </head>
 <body>
     <div class="container-sm" style="max-width: 550px;">
@@ -53,14 +60,26 @@
                 </div>
                 <!-- tanggalSampai -->
                 <input type="text" class="form-control" id="tanggalSampai" name="tanggalSampai" value="" style="display: none;" required>
+                <!-- hongkir -->
+                <input type="text" class="form-control" id="hongkir" name="hongkir" value="" style="display: none;" required>
                 <!-- rincian pesanan -->
                 <div class="mt-3 p-1" style="background-color: #d3ffe0;border-radius: 10px;border: dashed 1px #008629;font-size: 14px;">
                     <div class="text-center p-2"><b>RINCIAN PESANAN :</b></div>
                     <table class="table">
                         <tr>
                             <td id="namapaket"></td>
-                            <td id="hargapaket" class="text-center"></td>
+                            <td id="hargapaket"></td>
                         </tr>
+                        <tr>
+                            <td style="border: 0;"><b>Ongkir</b></td>
+                            <td id="ongkir_id" style="border: 0;"></td>
+                        </tr>
+
+                        <tr>
+                            <td style="border: 0;"><b>Total Pembayaran</b></td>
+                            <td id="totalpembayaran" style="border: 0;"></td>
+                        </tr>
+
                     </table>
                 </div>
                 <!-- Submit -->
@@ -86,29 +105,29 @@
             var img = "/1btl.gif"; 
             var paket = "Herbal Ar-Rijal 1 btl";
             var paketwa = "Herbal Ar-Rijal 1 btl";
-            var haret = "<span style=\"color:red;\"><s><b>Rp95.000</b></s></span>";
-            var hrg = "<b>Rp85.000</b><br/>(Belum termasuk ongkir)";
+            var haret = 95000;
+            var hrg = 85000;
             var bgcol = "#008629";
         } else if (id === "3") {
             var img = "/3btl.gif"; 
             var paket = "<b>PAKET THREESOME</b><br/>Herbal Ar-Rijal 3 btl<br/>+ Bonus Hajar Jahanam 1 btl";
             var paketwa = "PAKET THREESOME Herbal Ar-Rijal 3 btl %2b Bonus Hajar Jahanam 1 btl";
-            var haret = "<span style=\"color:red;\"><s><b>Rp225.000</b></s></span>";
-            var hrg = "<b>Rp198.000</b><br/>(Gratis ongkir)";
+            var haret = 225000;
+            var hrg = 198000;
             var bgcol = "#1565c0";
         } else if (id === "6") {
             var img = "/6btl.gif"; 
             var paket = "<b>PAKET GANGBANG</b><br/>Herbal Ar-Rijal 6 btl<br/>+ Bonus Hajar Jahanam 2 btl";
             var paketwa = "PAKET GANGBANG Herbal Ar-Rijal 6 btl %2b Bonus Hajar Jahanam 2 btl";
-            var haret = "<span style=\"color:red;\"><s><b>Rp510.000</b></s></span>";
-            var hrg = "<b>Rp348.000</b><br/>(Gratis ongkir)";
+            var haret = 510000;
+            var hrg = 348000;
             var bgcol = "#e65100";
         } else if (id === "9") {
             var img = "/9btl.gif"; 
             var paket = "<b>PAKET PARTY</b><br/>Herbal Ar-Rijal 9 btl<br/>+ Bonus Hajar Jahanam 3 btl";
             var paketwa = "PAKET PARTY Herbal Ar-Rijal 9 btl %2b Bonus Hajar Jahanam 3 btl";
-            var haret = "<span style=\"color:red;\"><s><b>Rp765.000</b></s></span>";
-            var hrg = "<b>Rp495.000</b><br/>(Gratis ongkir)";
+            var haret = 765000;
+            var hrg = 495000;
             var bgcol = "#d00000";
         } else {
             window.location.href = "/"
@@ -117,7 +136,7 @@
         document.getElementById("title").style.color = bgcol;
         document.getElementById("imgheader").src = img;
         document.getElementById("namapaket").innerHTML = paket;
-        document.getElementById("hargapaket").innerHTML = haret+"<br/>"+hrg;
+        document.getElementById("hargapaket").innerHTML = "<span style=\"color:red;\"><s><b>"+formatter.format(haret)+"</b></s></span><br/><b>"+formatter.format(hrg)+"</b>";
         document.getElementById("id").value = id;
         // document.getElementById("walink").href = "https://wa.me/62xxxxxxxx?text=Halo%20admin%0ASaya%20mau%20pesan%20"+paketwa;
         // Tanggal Sampai
@@ -154,6 +173,7 @@
     <script src="/region.js"></script>
 
     <script>
+
         $.each(myJson.provinsi, function (index, value) {
             var provinsi_id;
             var kotkab_id;
@@ -163,8 +183,86 @@
                 $("#kotkab").find("option:first").text("- Pilih Kota / Kabupaten -");
                 provinsi_id = $(this).find('option:selected').attr('rel');
                 $.each(myJson.provinsi[provinsi_id].kotkab, function (index1, value1) {
+                    if (id === "1") {if (provinsi_id === "0"){
+                            var ongkir = 65000;
+                        } else if (provinsi_id === "1"){
+                            var ongkir = 35000;
+                        } else if (provinsi_id === "2"){
+                            var ongkir = 13000;
+                        } else if (provinsi_id === "3"){
+                            var ongkir = 46000;
+                        } else if (provinsi_id === "4"){
+                            var ongkir = 10000;
+                        } else if (provinsi_id === "5"){
+                            var ongkir = 72000;
+                        } else if (provinsi_id === "6"){
+                            var ongkir = 42000;
+                        } else if (provinsi_id === "7"){
+                            var ongkir = 15000;
+                        } else if (provinsi_id === "8"){
+                            var ongkir = 25000;
+                        } else if (provinsi_id === "9"){
+                            var ongkir = 30000;
+                        } else if (provinsi_id === "10"){
+                            var ongkir = 51000;
+                        } else if (provinsi_id === "11"){
+                            var ongkir = 58000;
+                        } else if (provinsi_id === "12"){
+                            var ongkir = 58000;
+                        } else if (provinsi_id === "13"){
+                            var ongkir = 70000;
+                        } else if (provinsi_id === "14"){
+                            var ongkir = 80000;
+                        } else if (provinsi_id === "15"){
+                            var ongkir = 40000;
+                        } else if (provinsi_id === "16"){
+                            var ongkir = 58000;
+                        } else if (provinsi_id === "17"){
+                            var ongkir = 35000;
+                        } else if (provinsi_id === "18"){
+                            var ongkir = 125000;
+                        } else if (provinsi_id === "19"){
+                            var ongkir = 100000;
+                        } else if (provinsi_id === "20"){
+                            var ongkir = 50000;
+                        } else if (provinsi_id === "21"){
+                            var ongkir = 82000;
+                        } else if (provinsi_id === "22"){
+                            var ongkir = 140000;
+                        } else if (provinsi_id === "23"){
+                            var ongkir = 122000;
+                        } else if (provinsi_id === "24"){
+                            var ongkir = 45000;
+                        } else if (provinsi_id === "25"){
+                            var ongkir = 55000;
+                        } else if (provinsi_id === "26"){
+                            var ongkir = 54000;
+                        } else if (provinsi_id === "27"){
+                            var ongkir = 72000;
+                        } else if (provinsi_id === "28"){
+                            var ongkir = 69000;
+                        } else if (provinsi_id === "29"){
+                            var ongkir = 69000;
+                        } else if (provinsi_id === "30"){
+                            var ongkir = 47000;
+                        } else if (provinsi_id === "31"){
+                            var ongkir = 33000;
+                        } else if (provinsi_id === "32"){
+                            var ongkir = 47000;
+                        } else if (provinsi_id === "33"){
+                            var ongkir = 25000;
+                        }
+                        document.getElementById("ongkir_id").innerHTML = "<b>"+formatter.format(ongkir)+"</b>";
+                        document.getElementById("totalpembayaran").innerHTML = "<b>"+formatter.format(ongkir+hrg)+"</b>";
+                        document.getElementById("hongkir").value = ongkir;
+                    } else {
+                        document.getElementById("ongkir_id").innerHTML = "<b>GRATIS</b>";
+                        document.getElementById("totalpembayaran").innerHTML = "<b>"+formatter.format(hrg)+"</b>";
+                        document.getElementById("hongkir").value = 0;
+
+                    }
                     $("#kotkab").find("option:first").text("- Pilih Kota / Kabupaten -");
-                    $("#kotkab").append('<option rel="' + index1 + '" value="'+value1.id+'">'+value1.name+'</option>');
+                    $("#kotkab").append('<option rel="' + index1 + '"  ="'+value1.id+'">'+value1.name+'</option>');
                 });
             });
             $("#kotkab").change(function () {
@@ -177,6 +275,8 @@
                 });
             });     
         });
+        document.getElementById("prov").innerHTML = provinsi_id;
+
     </script>
 </body>
 </html>

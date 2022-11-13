@@ -10,6 +10,11 @@
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <!-- <script src="https://smtpjs.com/v3/smtp.js"></script> -->
     <script>
+        const formatter = new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR',
+            maximumFractionDigits: 0,
+        });
         var url_string = window.location.href;
         var url = new URL(url_string);
         var nama = url.searchParams.get("nama");
@@ -20,26 +25,27 @@
         var kecamatan = url.searchParams.get("kecamatan");
         var tanggalSampai = url.searchParams.get("tanggalSampai");
         var id = url.searchParams.get("id");
+        var hongkir = parseInt(url.searchParams.get("hongkir"));
         if (id === "1") {
             var paket = "Herbal Ar-Rijal 1 btl";
-            var hrg = "Rp 85.000";
-            var hrg2 = "Rp 100.000";
-            var statusongkir = "Rp 25.000";
+            var hrg = 85000;
+            var hrg2 = hrg+hongkir;
+            var statusongkir = formatter.format(hongkir);
         } else if (id === "3") {
             var paket = "PAKET THREESOME (Herbal Ar-Rijal 3 btl + Bonus Hajar Jahanam 1 btl)";
-            var hrg = "Rp 198.000";
-            var hrg2 = "Rp 198.000";
-            var statusongkir = "Gratis ongkir";
+            var hrg = 198000;
+            var hrg2 = hrg+hongkir;
+            var statusongkir = "GRATIS";
         } else if (id === "6") {
             var paket = "PAKET GANGBANG (Herbal Ar-Rijal 6 btl + Bonus Hajar Jahanam 2 btl)";
-            var hrg = "Rp 348.000";
-            var hrg2 = "Rp 348.000";
-            var statusongkir = "Gratis ongkir";
+            var hrg = 348000;
+            var hrg2 = hrg+hongkir;
+            var statusongkir = "GRATIS";
         } else if (id === "9") {
             var paket = "PAKET PARTY (Herbal Ar-Rijal 9 btl + Bonus Hajar Jahanam 3 btl)";
-            var hrg = "Rp 495.000";
-            var hrg2 = "Rp 495.000";
-            var statusongkir = "Gratis ongkir";
+            var hrg = 495000;
+            var hrg2 = hrg+hongkir;
+            var statusongkir = "GRATIS";
         } else {
             window.location.href = "/"
         }
@@ -86,20 +92,15 @@
         $('#p2').delay(4000).show(100);
         $('#p3').delay(6000).show(100);
         $('#p4').delay(8000).show(100);
-        // var new_url = window.location.href;
-        // var url = new_url.replace("/loading2/","/order/");
-        // setTimeout(function(){
-        //     window.location.href = url;
-        //  }, 11000);
         var form = new FormData();
         form.append("target", nomor+","+085155065560);
-        form.append("message", `_*Halo `+nama+`*_\n──── ⋅⋅ ──── ⋅⋅ ──── ⋅⋅ ────\n👉 _*Berikut ini adalah detail pesanan anda*_\n👤 _*Nama* : `+nama+`_\n📱 _*Nomor WA* : `+nomor+`_\n🏠 _*Alamat* : `+alamat+`, KEC. `+kecamatan+`, `+kotkab+`, `+provinsi+`_\n📦 _*Paket* : `+paket+`_\n💸 _*Harga* : `+hrg+`_\n🚚 _*Ongkir* : `+statusongkir+`_\n──── ⋅⋅ ──── ⋅⋅ ──── ⋅⋅ ────\n⭐ _Pesanan anda *sedang dalam proses*_\n⭐ _Perkiraan paket sampai sebelum tanggal *`+tanggalSampai+`*_\n⭐ _Bayar ke kurir sejumlah *`+hrg2+`* saat paket sampai_\n──── ⋅⋅ ──── ⋅⋅ ──── ⋅⋅ ────\n_*Terimakasih*_`);
+        form.append("message", `_*Halo `+nama+`*_\n──── ⋅⋅ ──── ⋅⋅ ──── ⋅⋅ ────\n👉 _*Berikut ini adalah detail pesanan anda*_\n👤 _*Nama* : `+nama+`_\n📱 _*Nomor WA* : `+nomor+`_\n🏠 _*Alamat* : `+alamat+`, KEC. `+kecamatan+`, `+kotkab+`, `+provinsi+`_\n📦 _*Paket* : `+paket+`_\n💵 _*Harga* : `+formatter.format(hrg)+`_\n🚚 _*Ongkir* : `+statusongkir+`_\n💰 _*Total* : `+formatter.format(hrg2)+`_\n──── ⋅⋅ ──── ⋅⋅ ──── ⋅⋅ ────\n⭐ _Pesanan anda *sedang dalam proses*_\n⭐ _Perkiraan paket sampai sebelum tanggal *`+tanggalSampai+`*_\n⭐ _Bayar ke kurir sejumlah *`+formatter.format(hrg2)+`* saat paket sampai_\n──── ⋅⋅ ──── ⋅⋅ ──── ⋅⋅ ────\n_*Terimakasih*_`);
         var settings = {
             "url": "https://api.fonnte.com/send",
             "method": "POST",
             "timeout": 0,
             "headers": {
-                "Authorization": "Sn2sTLvE7PRvc51Zs_9u"
+                "Authorization": "hTH2WXH9A6pCgZV0Xr33"
             },
             "processData": false,
             "mimeType": "multipart/form-data",
