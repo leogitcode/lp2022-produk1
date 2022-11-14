@@ -20,10 +20,10 @@
 </head>
 <body>
     <div class="container-sm" style="max-width: 550px;">
-        <div class="p-3 mt-3">
+        <div class="py-3 px-5 mt-4">
             <img id="imgheader" src="" style="width: 100%;border-radius: 10px;border: 1px solid #000000;">
         </div>
-        <div class="p-3">
+        <div class="py-3 px-5">
             <p class="text-center mt-3" style="font-size: 24px;"><b id="title">Data Penerima:</b></p>
             <form action="/loading1/" class="needs-validation" method="get" novalidate>
                 <!-- id -->
@@ -38,7 +38,7 @@
                 </div>
                 <div class="mt-3">
                     <!-- Alamat -->
-                    <textarea class="form-control" rows="4" id="alamat" name="alamat" placeholder="Alamat lengkap (Berisi : nama jalan, nomor rumah, RT/RW, patokan)" required></textarea>
+                    <textarea class="form-control" rows="4" id="alamat" name="alamat" placeholder="Alamat lengkap (Berisi : Nama jalan/gang, nomor rumah, rt/rw, patokan, kelurahan/desa, dll)" required></textarea>
                 </div>
                 <div class="mt-3">
                     <!-- Provinsi -->
@@ -70,16 +70,14 @@
                             <td id="namapaket"></td>
                             <td id="hargapaket"></td>
                         </tr>
-                        <tr>
-                            <td style="border: 0;"><b>Ongkir</b></td>
-                            <td id="ongkir_id" style="border: 0;"></td>
-                        </tr>
-
-                        <tr>
-                            <td style="border: 0;"><b>Total Pembayaran</b></td>
-                            <td id="totalpembayaran" style="border: 0;"></td>
-                        </tr>
-
+                            <tr id="detailbiaya" style="display:none;">
+                                <td style="border: 0;"><b>Ongkir</b></td>
+                                <td id="ongkir_id" style="border: 0;"></td>
+                            </tr>
+                            <tr id="detailbiaya2" style="display:none;">
+                                <td style="border: 0;"><b>Total Pembayaran</b></td>
+                                <td id="totalpembayaran" style="border: 0;"></td>
+                            </tr>              
                     </table>
                 </div>
                 <!-- Submit -->
@@ -183,6 +181,8 @@
                 $("#kotkab").find("option:first").text("- Pilih Kota / Kabupaten -");
                 provinsi_id = $(this).find('option:selected').attr('rel');
                 $.each(myJson.provinsi[provinsi_id].kotkab, function (index1, value1) {
+                    $('#detailbiaya').show();
+                    $('#detailbiaya2').show();
                     if (id === "1") {if (provinsi_id === "0"){
                             var ongkir = 65000;
                         } else if (provinsi_id === "1"){
