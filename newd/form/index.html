@@ -78,8 +78,8 @@
                             <td id="hargapaket" class="text-right" style="border: 0;"></td>
                         </tr>
                         <tr id="detailongkir" style="display:none;">
-                            <td style="border: 0;"><b>Ongkir</b></td>
-                            <td id="ongkir_id" style="border: 0;" class="text-right"></td>
+                            <td style="border: 0;" class="pt-2"><b>Ongkir</b></td>
+                            <td id="ongkir_id" style="border: 0;" class="text-right pt-2"></td>
                         </tr>
                         <tr id="diskonongkir" style="display:none;">
                             <td style="border: 0;"><b>Gratis Ongkir</b></td>
@@ -116,22 +116,19 @@
         var id = url.searchParams.get("id");
         if (id === "1") {
             var img = "/p1.jpg"; 
-            var paket = "<b>PAKET SATU</b><br/>Herbal Ar-Rijal 1 btl";
-            var paketwa = "PAKET SATU Herbal Ar-Rijal 1 btl %2b Bonus Hajar Jahanam 2 btl";
+            var paket = "<b>PAKET SATU</b><br/>⦿ Herbal Ar-Rijal <b>x 1</b>";
             var haret = 100000;
             var hrg = 69000;
             var bgcol = "#1565c0";
         } else if (id === "2") {
             var img = "/p2.jpg"; 
-            var paket = "<b>PAKET DUA</b><br/>Herbal Ar-Rijal 2 btl<br/>+ Bonus Hajar Jahanam 1 btl";
-            var paketwa = "PAKET DUA Herbal Ar-Rijal 2 btl %2b Bonus Hajar Jahanam 1 btl";
+            var paket = "<b>PAKET DUA</b><br/>⦿ Herbal Ar-Rijal <b>x 2</b><br/>⦿ Bonus Hajar Jahanam <b>x 1</b>";
             var haret = 200000;
             var hrg = 129000;
             var bgcol = "#e65100";
         } else if (id === "3") {
             var img = "/p3.jpg"; 
-            var paket = "<b>PAKET TIGA</b><br/>Herbal Ar-Rijal 3 btl<br/>+ Bonus Hajar Jahanam 2 btl";
-            var paketwa = "PAKET TIGA Herbal Ar-Rijal 3 btl %2b Bonus Hajar Jahanam 2 btl";
+            var paket = "<b>PAKET TIGA</b><br/>⦿ Herbal Ar-Rijal <b>x 3</b><br/>⦿ Bonus Hajar Jahanam <b>x 2</b>";
             var haret = 300000;
             var hrg = 199000;
             var bgcol = "#d00000";
@@ -142,7 +139,7 @@
         document.getElementById("title").style.color = bgcol;
         document.getElementById("imgheader").src = img;
         document.getElementById("namapaket").innerHTML = paket;
-        document.getElementById("hargapaket").innerHTML = "<span style=\"color:red;\"><s><b>"+formatter.format(haret)+"</b></s></span><br/><b>"+formatter.format(hrg)+"</b>";
+        document.getElementById("hargapaket").innerHTML = "<br/><span style=\"color:red;\"><s><b>"+formatter.format(haret)+"</b></s></span><br/><b>"+formatter.format(hrg)+"</b>";
         document.getElementById("id").value = id;
         // document.getElementById("walink").href = "https://wa.me/62xxxxxxxx?text=Halo%20admin%0ASaya%20mau%20pesan%20"+paketwa;
         // Tanggal Sampai

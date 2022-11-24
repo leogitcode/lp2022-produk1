@@ -155,15 +155,15 @@
             var hongkir = parseInt(url.searchParams.get("hongkir"));
             var pothongkir = parseInt(url.searchParams.get("pothongkir"));
             if (id === "1") {
-                var paket = "【PAKET SATU】Herbal Ar-Rijal 1 btl";
+                var paket = "PAKET SATU | Herbal Ar-Rijal x 1";
                 var hrg = 69000;
                 document.getElementById("prod_image").src = "/p1.jpg";
             } else if (id === "2") {
-                var paket = "【PAKET DUA】Herbal Ar-Rijal 2 btl + Bonus Hajar Jahanam 1 btl";
+                var paket = "PAKET DUA | Herbal Ar-Rijal x 2 | Bonus Hajar Jahanam x 1";
                 var hrg = 129000;
                 document.getElementById("prod_image").src = "/p2.jpg";
             } else if (id === "3") {
-                var paket = "【PAKET TIGA】Herbal Ar-Rijal 3 btl + Bonus Hajar Jahanam 2 btl";
+                var paket = "PAKET TIGA | Herbal Ar-Rijal x 3 | Bonus Hajar Jahanam x 2";
                 var hrg = 199000;
                 document.getElementById("prod_image").src = "/p3.jpg";
             } else {
@@ -202,7 +202,7 @@
                 "contentType": false,
                 "data": form
             };
-            setTimeout(function(){ callAjax(); }, 1000);
+            setTimeout(function(){ callAjax(); }, 500);
             function callAjax(){
                 $.ajax(settings).done(function (response) {
                     console.log(response);
