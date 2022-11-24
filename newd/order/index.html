@@ -34,6 +34,9 @@
             font-weight: bold;
             color: #ff0000;
         }
+        #p_gratisongkir {
+            color: #ff0000;
+        }
         canvas {
             width: 100%;
         }
@@ -46,44 +49,50 @@
         
         <div id="capture" style="background-color: #ffffff">
             <div class="p-1">
-                <p style="text-align: center;font-size: 18px;font-weight: bold;color: #007bff;">
-                    Bukti Pemesanan
-                </p>
+
                 <p style="font-size:14px">
                     <b>Halo  <span id="p_nama"></span></b>
                 </p>
                 <p style="font-size:14px">
+                    Terimakasih sudah melakukan pemesanan
+                    <br>
                     Berikut ini adalah detail pesanan anda
                 </p>
+
                 <table class="table" style="font-size:12px">
         
                     <tr>
                         <td class="tdl">Nama</td>
-                        <td class="tdr" id="p_nama2"></td>
+                        <td class="tdr" id="p_nama2" colspan="2"></td>
                     </tr>
                     <tr>
                         <td class="tdl">Nomor WA</td>
-                        <td class="tdr" id="p_nomor"></td>
+                        <td class="tdr" id="p_nomor" colspan="2"></td>
                     </tr>
                     <tr>
                         <td class="tdl">Alamat</td>
-                        <td class="tdr" id="p_alamat"></td>
+                        <td class="tdr" id="p_alamat" colspan="2"></td>
                     </tr>
                     <tr>
                         <td class="tdl">Paket</td>
+                        <td class="tdr"><img id="prod_image" style="width: 100%;max-width:100px"/></td>
                         <td class="tdr" id="p_paket"></td>
                     </tr>
                     <tr>
                         <td class="tdl">Harga</td>
-                        <td class="tdr" id="p_harga_tab"></td>
+                        <td class="tdr" id="p_harga_tab" colspan="2"></td>
                     </tr>
                     <tr>
                         <td class="tdl">Ongkir</td>
-                        <td class="tdr" id="p_ongkir"><b>Gratis</b></td>
+                        <td class="tdr" id="p_ongkir" colspan="2"><b></b></td>
+                    </tr>
+                    <tr>
+                        <td class="tdl">Gratis Ongkir</td>
+                        <td class="tdr" id="p_gratisongkir" colspan="2"><b></b></td>
                     </tr>
                     <tr>
                         <td class="tdl">Total</td>
-                        <td class="tdr" id="p_total"></td>
+                        <td class="tdr" id="p_total" colspan="2"></td>
                     </tr>
                 </table>
                 <ul class="fa-ul" style="font-size:14px">
@@ -91,9 +100,7 @@
                     <li><i style="color: #009846; margin-right: 5px;" class="fa-li fa fa-check"></i>Perkiraan paket sampai sebelum tanggal <span id="p_tanggalSampai"></span></li>
                     <li><i style="color: #009846; margin-right: 5px;" class="fa-li fa fa-check"></i>Bayar ke kurir sejumlah <span id="p_harga"></span> saat paket sampai</li>
                 </ul>
-                <p style="font-size:14px">
-                    <b>Terimakasih</b>
-                </p>
+
             </div>
         </div>
             <div class="mt-3 p-2 mx-auto" style="font-size: 11px;color: #009846;border: 1px dotted #009846;border-radius: 10px;width: fit-content;background-color: #e4fdf0;">
@@ -146,19 +153,19 @@
             var tanggalSampai = url.searchParams.get("tanggalSampai");
             var id = url.searchParams.get("id");
             var hongkir = parseInt(url.searchParams.get("hongkir"));
+            var pothongkir = parseInt(url.searchParams.get("pothongkir"));
             if (id === "1") {
-                var paket = "Herbal Ar-Rijal 1 btl";
-                var hrg = 85000;
-                document.getElementById("p_ongkir").innerHTML = "<b>"+formatter.format(hongkir)+"</b>";
+                var paket = "【PAKET SATU】Herbal Ar-Rijal 1 btl";
+                var hrg = 69000;
+                document.getElementById("prod_image").src = "/p1.jpg";
+            } else if (id === "2") {
+                var paket = "【PAKET DUA】Herbal Ar-Rijal 2 btl + Bonus Hajar Jahanam 1 btl";
+                var hrg = 129000;
+                document.getElementById("prod_image").src = "/p2.jpg";
             } else if (id === "3") {
-                var paket = "<b>PAKET THREESOME</b><br/>Herbal Ar-Rijal 3 btl<br/>+ Bonus Hajar Jahanam 1 btl";
-                var hrg = 198000;
-            } else if (id === "6") {
-                var paket = "<b>PAKET GANGBANG</b><br/>Herbal Ar-Rijal 6 btl<br/>+ Bonus Hajar Jahanam 2 btl";
-                var hrg = 348000;
-            } else if (id === "9") {
-                var paket = "<b>PAKET PARTY</b><br/>Herbal Ar-Rijal 9 btl<br/>+ Bonus Hajar Jahanam 3 btl";
-                var hrg = 495000;
+                var paket = "【PAKET TIGA】Herbal Ar-Rijal 3 btl + Bonus Hajar Jahanam 2 btl";
+                var hrg = 199000;
+                document.getElementById("prod_image").src = "/p3.jpg";
             } else {
                 window.location.href = "/"
             }
@@ -168,14 +175,44 @@
             document.getElementById("p_alamat").innerHTML = alamat+`, KEC. `+kecamatan+`, `+kotkab+`, `+provinsi;
             document.getElementById("p_paket").innerHTML = paket;
             document.getElementById("p_harga_tab").innerHTML = formatter.format(hrg);
-            document.getElementById("p_total").innerHTML = "<b>"+formatter.format(hrg+hongkir)+"</b>";
-            document.getElementById("p_harga").innerHTML = formatter.format(hrg+hongkir);
+            document.getElementById("p_total").innerHTML = "<b>"+formatter.format(hrg+hongkir-pothongkir)+"</b>";
+            document.getElementById("p_harga").innerHTML = formatter.format(hrg+hongkir-pothongkir);
             document.getElementById("p_tanggalSampai").innerHTML = tanggalSampai;
+            document.getElementById("p_ongkir").innerHTML = "<b>"+formatter.format(hongkir)+"</b>";
+            document.getElementById("p_gratisongkir").innerHTML = "<b>-"+formatter.format(pothongkir)+"</b>";
+            if(nomor.startsWith("0")){
+                var numb = nomor.substring(1, nomor.length);
+                nomor62 = "62"+numb;
+            } else {
+                nomor62 = nomor;
+            }
+            var form = new FormData();
+            form.append("target", nomor62);
+            // form.append("message", `_*Halo `+nama+`*_\n──── ⋅⋅ ──── ⋅⋅ ──── ⋅⋅ ────\n👉 _*Terimakasih sudah melakukan pemesanan, berikut ini adalah detail pesanan anda*_\n👤 _*Nama* : `+nama+`_\n📱 _*Nomor WA* : `+nomor+`_\n🏠 _*Alamat* : `+alamat+`, KEC. `+kecamatan+`, `+kotkab+`, `+provinsi+`_\n📦 _*Paket* : `+paket+`_\n💵 _*Harga* : `+formatter.format(hrg)+`_\n🚚 _*Ongkir* : `+formatter.format(hongkir)+`_\n🚚 _*Gratis Ongkir* : -`+formatter.format(pothongkir)+`_\n💰 _*Total* : `+formatter.format(hrg+hongkir-pothongkir)+`_\n──── ⋅⋅ ──── ⋅⋅ ──── ⋅⋅ ────\n⭐ _Pesanan anda *sedang dalam proses*_\n⭐ _Perkiraan paket sampai sebelum tanggal *`+tanggalSampai+`*_\n⭐ _Bayar ke kurir sejumlah *`+formatter.format(hrg+hongkir-pothongkir)+`* saat paket sampai_\n──── ⋅⋅ ──── ⋅⋅ ──── ⋅⋅ ────`);
+            form.append("message", `_*Halo `+nama+`*_\n─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─\n👉 _*Terimakasih sudah melakukan pemesanan, berikut ini adalah detail pesanan anda*_\n👤 _*Nama* : `+nama+`_\n📱 _*Nomor WA* : `+nomor+`_\n🏠 _*Alamat* : `+alamat+`, KEC. `+kecamatan+`, `+kotkab+`, `+provinsi+`_\n📦 _*Paket* : `+paket+`_\n💵 _*Harga* : `+formatter.format(hrg)+`_\n🚚 _*Ongkir* : `+formatter.format(hongkir)+`_\n🚚 _*Gratis Ongkir* : -`+formatter.format(pothongkir)+`_\n💰 _*Total* : `+formatter.format(hrg+hongkir-pothongkir)+`_\n─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─\n⭐ _Pesanan anda *sedang dalam proses*_\n⭐ _Perkiraan paket sampai sebelum tanggal *`+tanggalSampai+`*_\n⭐ _Bayar ke kurir sejumlah *`+formatter.format(hrg+hongkir-pothongkir)+`* saat paket sampai_\n─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─`);
+            var settings = {
+                "url": "https://api.fonnte.com/send",
+                "method": "POST",
+                "timeout": 0,
+                "headers": {
+                    "Authorization": "hTH2WXH9A6pCgZV0Xr33"
+                },
+                "processData": false,
+                "mimeType": "multipart/form-data",
+                "contentType": false,
+                "data": form
+            };
+            setTimeout(function(){ callAjax(); }, 1000);
+            function callAjax(){
+                $.ajax(settings).done(function (response) {
+                    console.log(response);
+                });
+            }
         </script>
 
 </div>
 <!-- Histats.com  START  (aync)-->
-<script type="text/javascript">var _Hasync= _Hasync|| [];
+    <!-- <script type="text/javascript">var _Hasync= _Hasync|| [];
     _Hasync.push(['Histats.start', '1,4716954,4,0,0,0,00010000']);
     _Hasync.push(['Histats.fasi', '1']);
     _Hasync.push(['Histats.track_hits', '']);
@@ -185,7 +222,7 @@
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
     })();
     </script>
-    <noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?4716954&101" alt="" border="0"></a></noscript>
+    <noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?4716954&101" alt="" border="0"></a></noscript> -->
 <!-- Histats.com  END  -->
 </body>
 </html>

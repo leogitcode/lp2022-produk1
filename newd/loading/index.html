@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processing...</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>    <script>
+        const formatter = new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR',
+            maximumFractionDigits: 0,
+        });
+        var url_string = window.location.href;
+        var url = new URL(url_string);
+        var nama = url.searchParams.get("nama");
+        var nomor = url.searchParams.get("nomor");
+        var alamat = url.searchParams.get("alamat");
+        var provinsi = url.searchParams.get("provinsi");
+        var kotkab = url.searchParams.get("kotkab");
+        var kecamatan = url.searchParams.get("kecamatan");
+        var tanggalSampai = url.searchParams.get("tanggalSampai");
+        var id = url.searchParams.get("id");
+        var hongkir = parseInt(url.searchParams.get("hongkir"));
+        var pothongkir = parseInt(url.searchParams.get("pothongkir"));
+        if (id === "1") {
+            var paket = "【PAKET SATU】Herbal Ar-Rijal 1 btl + Bonus Hajar Jahanam 2 btl";
+            var hrg = 69000;
+            var hrg2 = hrg+hongkir-pothongkir;
+        } else if (id === "2") {
+            var paket = "【PAKET DUA】Herbal Ar-Rijal 2 btl + Bonus Hajar Jahanam 1 btl";
+            var hrg = 129000;
+            var hrg2 = hrg+hongkir-pothongkir;
+        } else if (id === "3") {
+            var paket = "【PAKET TIGA】Herbal Ar-Rijal 3 btl + Bonus Hajar Jahanam 2 btl";
+            var hrg = 199000;
+            var hrg2 = hrg+hongkir-pothongkir;
+        } else {
+            window.location.href = "/"
+        }
+    </script>
+</head>
+<body>
+    <script>
+        var form = new FormData();
+        form.append("target", "085155065560");
+        form.append("message", "New Order\n"+id+"-"+nama+"-"+nomor+"-"+alamat+"-KEC. "+kecamatan+"-"+kotkab+"-"+provinsi+"-"+paket+"-"+formatter.format(hrg)+"-"+formatter.format(hongkir)+"-"+formatter.format(pothongkir)+"-"+formatter.format(hrg2));
+        var settings = {
+            "url": "https://api.fonnte.com/send",
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+                "Authorization": "Sn2sTLvE7PRvc51Zs_9u"
+            },
+            "processData": false,
+            "mimeType": "multipart/form-data",
+            "contentType": false,
+            "data": form
+        };
+        setTimeout(function(){ callAjax(); }, 10000);
+            function callAjax(){
+                $.ajax(settings).done(function (response) {
+                window.location.href = window.location.href.replace("/loading/","/order/")
+            });
+        }
+    </script> 
+    <div class="container-sm mt-5 p-3" style="max-width: 550px;">
+        <div class="text-center" style="font-size: 18px;color: #df0000;">
+            <b>
+                MOHON TUNGGU SEBENTAR
+            </b>
+        </div>
+        <div class="text-center" style="font-size: 18px;">
+            <b>
+                Pesanan anda sedang diproses...
+            </b>
+        </div>
+        <div class="text-center">
+            <img src="/loading.gif"/>
+        </div>
+        <div class="text-center">
+            <div id="p1" style="display: none;"><i style="color: #009846; margin-right: 5px;" class="fas fa-check"></i>
+                Memeriksa Nama
+            </div>
+            <div id="p2" style="display: none;"><i style="color: #009846; margin-right: 5px;" class="fas fa-check"></i>
+                Memeriksa Nomor
+            </div>
+            <div id="p3" style="display: none;"><i style="color: #009846; margin-right: 5px;" class="fas fa-check"></i>
+                Memeriksa Alamat
+            </div>
+            <div id="p4" style="display: none;"><i style="color: #009846; margin-right: 5px;" class="fas fa-check"></i>
+                Mencetak bukti pemesanan
+            </div>
+        </div>
+    </div>
+    <script>
+        $('#p1').delay(2000).show(100);
+        $('#p2').delay(4000).show(100);
+        $('#p3').delay(6000).show(100);
+        $('#p4').delay(8000).show(100);
+    </script>
+
+<!-- Histats.com  START  (aync)-->
+    <!-- <script type="text/javascript">var _Hasync= _Hasync|| [];
+    _Hasync.push(['Histats.start', '1,4716954,4,0,0,0,00010000']);
+    _Hasync.push(['Histats.fasi', '1']);
+    _Hasync.push(['Histats.track_hits', '']);
+    (function() {
+    var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+    hs.src = ('//s10.histats.com/js15_as.js');
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+    })();
+    </script>
+    <noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?4716954&101" alt="" border="0"></a></noscript> -->
+<!-- Histats.com  END  -->
+</body>
+</html>
